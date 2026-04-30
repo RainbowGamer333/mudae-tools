@@ -31,16 +31,5 @@ def send_message(message: str):
         print(f'An error occurred: {e}')
 
 
-last_hour_sent = -1
-print("Starting message sender...")
-message = "$p"
-
-# Send message at every 2h interval (2am, 4am, 6am, etc.), at random minute and second
-while True:
-    current_time = time.localtime()
-    if current_time.tm_hour % 2 == 0 and last_hour_sent != current_time.tm_hour:
-        time.sleep(60 * random.randint(1, 60)) # Wait between 1 and 60 minutes
-        send_message(message)
-        last_hour_sent = current_time.tm_hour
-    else:
-        time.sleep(1800)  # Check every 30 minutes
+time.sleep(random.randint(1,20) * 60)  # Sleep for a random time between 1 and 20 minutes
+send_message('$p')
