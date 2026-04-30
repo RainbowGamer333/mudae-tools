@@ -6,8 +6,12 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-TOKEN = os.getenv('AUTH_TOKEN')
 CHANNEL_ID = '1180951373664227469'
+TOKEN = os.getenv('AUTH_TOKEN') or None
+
+if not TOKEN:
+    print("Error: AUTH_TOKEN not found in environment variables.")
+    exit(1)
 
 headers = {
     'Authorization': TOKEN,
