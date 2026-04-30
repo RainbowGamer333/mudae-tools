@@ -1,4 +1,4 @@
-name: Run Python Script Every 2 Hours
+name: Roll pokemon every 2h
 
 on:
   schedule:
