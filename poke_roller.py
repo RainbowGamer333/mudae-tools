@@ -30,6 +30,4 @@ def send_message(message: str):
     except Exception as e:
         print(f'An error occurred: {e}')
 
-
-time.sleep(random.randint(1,20) * 60)  # Sleep for a random time between 1 and 20 minutes
 send_message('$p')
