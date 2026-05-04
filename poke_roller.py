@@ -6,27 +6,23 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-CHANNEL_ID = '1180951373664227469'
-TOKEN = os.getenv('AUTH_TOKEN') or None
+token_list = ['ROMAIN_AUTH_TOKEN', 'LOGANN_AUTH_TOKEN']
+TOKENS = [os.getenv(token) for token in token_list if os.getenv(token) != -1]
 
-if not TOKEN:
-    print("Error: AUTH_TOKEN not found in environment variables.")
+CHANNEL_ID = '1180951373664227469'
+URL = f'https://discord.com/api/v9/channels/{CHANNEL_ID}/messages'
+
+if not TOKENS:
+    print("Error: No valid authentication tokens found in environment variables.")
     exit(1)
 
-headers = {
-    'Authorization': TOKEN,
-    'Content-Type': 'application/json'
-}
-
-
-def send_message(message: str):
-    url = f'https://discord.com/api/v9/channels/{CHANNEL_ID}/messages'
+def send_message(message: str, headers: dict):
     data = {
         'content': message
     }
 
     try:
-        response = requests.post(url, json=data, headers=headers)
+        response = requests.post(URL, json=data, headers=headers)
         if response.status_code == 200:
             print(f'Message sent successfully at {time.ctime()}')
         else:
@@ -34,4 +30,10 @@ def send_message(message: str):
     except Exception as e:
         print(f'An error occurred: {e}')
 
-send_message('$p')
+if __name__ == "__main__":
+    for token in TOKENS:
+        headers = {
+            'Authorization': token,
+            'Content-Type': 'application/json'
+        }
+        send_message('$p', headers)

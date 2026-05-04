@@ -23,5 +23,6 @@ jobs:
       
       - name: Run script
         env:
-          AUTH_TOKEN: ${{secrets.AUTH_TOKEN}}
+          ROMAIN_AUTH_TOKEN: ${{secrets.ROMAIN_AUTH_TOKEN}}
+          LOGANN_AUTH_TOKEN: ${{secrets.LOGANN_AUTH_TOKEN}}
         run: python poke_roller.py
