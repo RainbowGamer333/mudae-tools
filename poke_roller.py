@@ -29,12 +29,17 @@ def send_message(message: str, headers: dict):
             print(f'Failed to send message: {response.status_code} - {response.text}')
     except Exception as e:
         print(f'An error occurred: {e}')
-
-if __name__ == "__main__":
+        
+def send_all_messages(message: str):
     for token in TOKENS:
         headers = {
-            'Authorization': token,
-            'Content-Type': 'application/json'
-        }
-        send_message('$p', headers)
+                'Authorization': token,
+                'Content-Type': 'application/json'
+            }
+        send_message(message, headers)
         time.sleep(random.randint(10,20))
+
+if __name__ == "__main__":
+    send_all_messages('$p')
+    time.sleep(2 * 3600)  # Sleep for 2 hours before sending the next message
+    send_all_messages('$p')
