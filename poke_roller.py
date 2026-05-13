@@ -41,5 +41,3 @@ def send_all_messages(message: str):
 
 if __name__ == "__main__":
     send_all_messages('$p')
-    time.sleep(2 * 3600)  # Sleep for 2 hours before sending the next message
-    send_all_messages('$p')
