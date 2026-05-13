@@ -1,5 +1,6 @@
 from time import sleep
-
+import pyautogui as auto
+from tqdm import tqdm
 
 def write(message):
     auto.write(message, interval=0.1)
