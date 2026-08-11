@@ -25,11 +25,8 @@ with open(infile_path, "r", encoding="utf-8") as infile, \
             break
 
         line = line.rstrip()
-        
-        if count == 0:
-            outfile.write(f"{args.prefix} {line.rstrip()}\n")
-        else:
-            outfile.write(f"{args.separator}{line.rstrip()}\n")
+        line = f"{args.prefix} {line}" if count == 0 else f"{args.separator}{line}"
+        outfile.write(line)
         count += 1
 
 # Read the output file and copy to clipboard
